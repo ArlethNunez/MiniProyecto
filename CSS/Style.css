@@ -1,0 +1,1272 @@
+
+/* ==========================================================================
+   RESET BÁSICO
+   Elimina márgenes y espacios automáticos del navegador
+   ========================================================================== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   CONFIGURACIÓN GENERAL DEL DOCUMENTO
+   ========================================================================== */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth; /* Hace que los links de ancla (#seccion) bajen suavemente */
+}
+
+/* Configuración base del sitio */
+body {
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    background-color: #F0F5FA; /* Fondo azul muy suave, diferente al de la profe */
+    color: #1A1A2E;
+    line-height: 1.6;
+
+    /* *** Espacio para que el header fijo no tape el contenido */
+    padding-top: 88px;
+}
+
+/* Multimedia adaptable */
+img,
+video,
+iframe {
+    max-width: 100%;
+}
+
+img {
+    height: auto;
+    display: block;
+}
+
+/* Enlaces sin subrayado con transición suave */
+a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Viñetas dentro del bloque */
+ul {
+    list-style-position: inside;
+}
+
+/* ==========================================================================
+   VARIABLES CSS
+   Con var(--nombre) podés reutilizar estos valores en todo el archivo
+   ========================================================================== */
+:root {
+    --azul-marino:  #1B3A5C;
+    --azul-medio:   #2A6496;
+    --celeste:      #5BA3C9;
+    --tierra:       #8B5E3C;
+    --arena:        #F2EAD3;
+    --blanco:       #FFFFFF;
+    --texto:        #1A1A2E;
+    --texto-suave:  #4A5568;
+    --sombra:       0 4px 16px rgba(27, 58, 92, 0.12);
+    --radio:        10px;
+}
+
+/* ==========================================================================
+   UTILIDADES GENERALES
+   ========================================================================== */
+
+/* Contenedor centrado reutilizable */
+.container {
+    width: min(90%, 1150px);
+    margin: 0 auto;
+}
+
+/* Separación general entre secciones */
+section,
+aside {
+    padding: 60px 0;
+}
+
+/* Títulos base */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--azul-marino);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    padding-bottom: 8px;
+}
+
+/* Párrafos */
+p {
+    margin-bottom: 15px;
+    color: var(--texto-suave);
+}
+
+/* Líneas divisorias */
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #C5D8E8;
+    margin: 30px 0;
+}
+
+/* ==========================================================================
+   HEADER Y NAVEGACIÓN
+   Header fijo en la parte superior de la pantalla
+   ========================================================================== */
+
+.site-header {
+    background-color: var(--azul-marino);
+    color: white;
+    padding: 16px 0;
+
+    border-bottom: 4px solid var(--tierra);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: var(--sombra);
+}
+
+/* *** Flexbox: coloca logo y nav en la misma fila */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Logo */
+.logo {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+    color: var(--blanco);
+}
+
+/* El span .logo-accent pinta "CR" de celeste */
+.logo-accent {
+    color: var(--celeste);
+}
+
+/* *** Checkbox oculto — controla el menú hamburguesa sin JavaScript */
+.menu-toggle {
+    display: none;
+}
+
+/* *** Botón hamburguesa — solo visible en móvil */
+.menu-button {
+    display: none;
+    width: 32px;
+    height: 24px;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Las tres rayas del botón hamburguesa */
+.menu-button span {
+    display: block;
+    height: 3px;
+    background-color: var(--blanco);
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+/* Menú principal horizontal */
+.main-nav ul {
+    list-style: none;
+    /* *** Flexbox organiza los links en fila */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Links del menú */
+.main-nav a {
+    color: #E2E8F0;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 0.95rem;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-color 0.3s, background-color 0.3s;
+}
+
+/* Hover y link activo: resalta con celeste */
+.main-nav a:hover,
+.main-nav a.active-link {
+    color: var(--celeste);
+    border-bottom-color: var(--celeste);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================================
+   BREADCRUMB (Ruta de navegación)
+   Le indica al usuario en qué página está
+   ========================================================================== */
+.breadcrumb {
+    background-color: var(--arena);
+    padding: 0.5rem 0;
+    font-size: 0.85rem;
+}
+
+.breadcrumb .container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.breadcrumb a {
+    color: var(--azul-medio);
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb span {
+    color: var(--texto-suave);
+}
+
+/* ==========================================================================
+   HERO SECTION
+   Lo primero que ve el usuario al entrar al sitio
+   ========================================================================== */
+
+.hero {
+   
+    background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-medio) 100%);
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* *** Flexbox: dos columnas (texto + imagen) */
+.hero-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+/* Columna de texto */
+.hero-text {
+    flex: 1.2;
+}
+
+/* Título principal */
+.hero-text h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem); 
+    color: var(--blanco);
+    margin-bottom: 20px;
+    line-height: 1.25;
+}
+
+/* Párrafo del hero */
+.hero-text p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 25px;
+}
+
+/* Badge encima del título */
+.hero-badge {
+    display: inline-block;
+    background-color: var(--celeste);
+    color: var(--azul-marino);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.82rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Columna de imagen */
+.hero-image {
+    flex: 0.8;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255,255,255,0.15);
+}
+
+/* IMAGEN PRINCIPAL DEL HERO:
+   Colocá tu imagen en assets/images/hero-pasantias.png */
+.hero-image img {
+    width: 100%;
+    border-radius: 14px;
+}
+
+/* Texto debajo de la imagen */
+.hero-image figcaption {
+    margin-top: 10px;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    font-style: italic;
+}
+
+/* Caja de aviso dentro del hero
+   Usa position: relative para anclar el .info-label absoluto */
+.hero-info {
+    margin-top: 30px;
+    padding: 25px 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left: 5px solid var(--celeste); /* Borde celeste, diferente al de la profe */
+    border-radius: 8px;
+    position: relative;                    /* ← Ancla al hijo absoluto */
+}
+
+/* Etiqueta que "flota" encima del borde superior de la caja
+   position: absolute la saca del flujo normal */
+.info-label {
+    position: absolute;
+    top: -12px;
+    left: 20px;                    /* La profe la pone a la derecha, nosotros a la izquierda */
+    background-color: var(--tierra);
+    color: var(--blanco);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* mark resalta texto en celeste */
+mark {
+    background-color: var(--celeste);
+    color: var(--azul-marino);
+    padding: 0 4px;
+    border-radius: 3px;
+}
+
+/* Fila de botones del hero */
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   BOTONES
+   ========================================================================== */
+
+/* Botón principal */
+.btn-primary,
+button[type="submit"] {
+    display: inline-block;
+    background-color: var(--celeste);     
+    color: var(--azul-marino);
+    padding: 12px 26px;
+    border-radius: var(--radio);
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover,
+button[type="submit"]:hover {
+    background-color: var(--blanco);
+    color: var(--azul-marino);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(91, 163, 201, 0.35);
+}
+
+/* Botón secundario */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--celeste);
+    border: 2px solid var(--celeste);
+    padding: 10px 20px;
+    border-radius: var(--radio);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--celeste);
+    color: var(--azul-marino);
+}
+
+/* Botón link (sin fondo) */
+.btn-link {
+    color: var(--blanco);
+    padding: 12px 0;
+    font-weight: 500;
+    border-bottom: 2px solid var(--celeste);
+    display: inline-block;
+    transition: color 0.3s;
+}
+
+.btn-link:hover {
+    color: var(--celeste);
+}
+
+/* ==========================================================================
+   SECCIÓN "SOBRE LA PLATAFORMA"
+   ========================================================================== */
+
+.sobre-section {
+    background-color: var(--blanco);
+}
+
+.sobre-section h2 {
+    color: var(--azul-marino);
+}
+
+.sobre-section h3 {
+    font-size: 1.2rem;
+    color: var(--azul-medio);
+    margin-bottom: 1.5rem;
+}
+
+/* *** CSS Grid: tarjetas en 3 columnas
+ 
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+/* Tarjetas de beneficios */
+.benefit-card {
+    background-color: var(--arena);          
+    border-left: 5px solid var(--celeste);
+    border-radius: var(--radio);
+    padding: 1.5rem;
+    transition: box-shadow 0.3s, transform 0.2s;
+}
+
+.benefit-card:hover {
+    box-shadow: var(--sombra);
+    transform: translateY(-4px);
+}
+
+.benefit-card h4 {
+    color: var(--azul-marino);
+    margin-bottom: 0.6rem;
+    font-size: 1rem;
+}
+
+.benefit-card p {
+    font-size: 0.93rem;
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   CATÁLOGO — TARJETAS DE PASANTÍAS (para pasantias.html)
+   ========================================================================== */
+
+.events-section {
+    background-color: #F0F5FA;
+}
+
+/* *** Grid con columnas automáticas responsivas */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: stretch;
+}
+
+/* Tarjeta de pasantía */
+.event-card {
+    background-color: var(--blanco);
+    border: 1px solid #D4E3EF;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(27, 58, 92, 0.06);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(27, 58, 92, 0.12);
+}
+
+.event-card figure {
+    margin: 0;
+    position: relative;
+    background-color: var(--azul-marino);
+}
+
+/* IMÁGENES DE TARJETAS:
+   Colocá las imágenes en assets/images/ con el nombre que referencies en el HTML */
+.event-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    opacity: 0.92;
+}
+
+.event-card figcaption {
+    font-size: 0.8rem;
+    color: #CBD5E1;
+    background-color: rgba(27, 58, 92, 0.88);
+    padding: 8px 16px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Contenido textual de la tarjeta */
+.event-card-content {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-card-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    color: var(--azul-marino);
+}
+
+.event-card-content p {
+    margin-bottom: 8px;
+    font-size: 0.93rem;
+}
+
+/* Botón interno de la tarjeta */
+.btn-card {
+    display: block;
+    text-align: center;
+    background-color: var(--azul-medio);
+    color: var(--blanco);
+    padding: 10px 16px;
+    border-radius: var(--radio);
+    font-weight: 600;
+    margin-top: auto; /* Empuja el botón al fondo */
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.btn-card:hover {
+    background-color: var(--celeste);
+    color: var(--azul-marino);
+}
+
+/* Botón deshabilitado cuando el cupo está lleno */
+.btn-card-disabled {
+    background-color: #CBD5E1;
+    color: #64748B;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Etiqueta absoluta en esquina de tarjeta */
+.card-label {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--azul-marino);
+    color: var(--blanco);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    z-index: 5;
+}
+
+/* Categoría o área de la tarjeta */
+.event-category {
+    display: inline-block;
+    background-color: #DDEEF8;
+    color: var(--azul-medio);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    align-self: flex-start;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+/* ==========================================================================
+   ASIDE DESTACADO
+   ========================================================================== */
+
+
+.destacado-aside {
+    background-color: var(--tierra);
+    color: var(--blanco);
+    padding: 2rem 2.5rem;
+    margin: 0 auto 3rem;
+    max-width: 700px;
+    border-radius: 16px;
+    box-shadow: var(--sombra);
+}
+
+.destacado-aside h4 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--arena);
+    margin-bottom: 0.8rem;
+}
+
+.destacado-aside p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0;
+}
+
+.destacado-aside small {
+    display: block;
+    margin-top: 0.8rem;
+    opacity: 0.7;
+    font-size: 0.8rem;
+    color: var(--arena);
+}
+
+/* ==========================================================================
+   TABLA SEMÁNTICA RESPONSIVA (para pasantias.html)
+   ========================================================================== */
+
+.table-section {
+    padding: 40px 0;
+}
+
+/* Permite scroll horizontal en pantallas pequeñas */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid #D4E3EF;
+    box-shadow: 0 4px 15px rgba(27, 58, 92, 0.05);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--blanco);
+    min-width: 700px;
+}
+
+th, td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #E2EEF5;
+    text-align: left;
+    vertical-align: middle;
+}
+
+/* Encabezado de tabla con color azul marino */
+th {
+    background-color: var(--azul-marino);
+    color: var(--blanco);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+/* Filas alternas con color arena muy suave */
+tr:nth-child(even) {
+    background-color: #F5F9FC;
+}
+
+tbody tr:hover {
+    background-color: #EBF4FA;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ==========================================================================
+   ESTADOS DE INTERFAZ (Badges)
+   ========================================================================== */
+
+.ui-states-demo {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 20px 0 30px 0;
+}
+
+.state-box {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-block;
+}
+
+.state-success,
+.event-card-content .state-success {
+    background-color: #D1FAE5;
+    color: #065F46;
+}
+
+.state-warning,
+.event-card-content .state-warning {
+    background-color: #FEF3C7;
+    color: #92400E;
+}
+
+.state-danger,
+.event-card-content .state-danger {
+    background-color: #FEE2E2;
+    color: #991B1B;
+}
+
+/* Estado vacío (sin resultados) */
+.empty-state {
+    margin: 30px 0;
+    padding: 40px;
+    background-color: var(--blanco);
+    border: 2px dashed #C5D8E8;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.empty-state h3 {
+    color: var(--azul-marino);
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   SECCIÓN MULTIMEDIA
+   ========================================================================== */
+
+.multimedia-section {
+    background-color: var(--arena);
+    padding: 4rem 0;
+}
+
+.multimedia-section h2 {
+    color: var(--azul-marino);
+    margin-bottom: 0.5rem;
+}
+
+.multimedia-section h3 {
+    font-size: 1rem;
+    color: var(--azul-medio);
+    margin: 1.5rem 0 0.75rem;
+}
+
+/* Reproductor de audio adaptable */
+audio {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    border-radius: var(--radio);
+}
+
+/* ==========================================================================
+   SECCIÓN MAPA
+   ========================================================================== */
+
+.mapa-section {
+    padding: 4rem 0;
+    background-color: var(--blanco);
+}
+
+.mapa-section h2 {
+    color: var(--azul-marino);
+    margin-bottom: 0.5rem;
+}
+
+/* iframe del mapa sin borde y con esquinas redondeadas */
+.mapa-section iframe {
+    border: none;
+    border-radius: 16px;
+    box-shadow: var(--sombra);
+    display: block;
+}
+
+/* ==========================================================================
+   FORMULARIOS
+   ========================================================================== */
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 12px 16px;
+    margin: 10px 0 20px 0;
+    border: 1.5px solid #C5D8E8;
+    border-radius: 8px;
+    background-color: var(--blanco);
+    color: var(--texto);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+select:focus {
+    outline: none;
+    border-color: var(--celeste);
+    box-shadow: 0 0 0 4px rgba(91, 163, 201, 0.18);
+}
+
+form {
+    background-color: var(--blanco);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #D4E3EF;
+    box-shadow: 0 10px 25px rgba(27, 58, 92, 0.05);
+    max-width: 600px;
+    margin: 20px 0;
+}
+
+form h3 {
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--arena);
+    padding-bottom: 10px;
+}
+
+form label {
+    font-weight: 600;
+    color: var(--azul-marino);
+    font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+footer {
+    background-color: var(--azul-marino);
+    color: rgba(255, 255, 255, 0.75);
+    padding: 3rem 0 1.5rem;
+    /* Borde superior tierra — diferente al celeste brillante de la profe */
+    border-top: 5px solid var(--tierra);
+    margin-top: 60px;
+}
+
+/* *** Flexbox: 3 columnas en el footer */
+.footer-content {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 180px;
+}
+
+.footer-logo {
+    font-size: 1.4rem;
+    color: var(--blanco);
+    margin-bottom: 0.75rem;
+}
+
+footer address {
+    font-style: normal;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+footer h5 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--celeste);
+    margin-bottom: 0.75rem;
+}
+
+footer p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer ul li {
+    margin-bottom: 0.4rem;
+}
+
+footer a {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+footer a:hover {
+    color: var(--celeste);
+}
+
+.footer-copy {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 1.2rem;
+    text-align: center;
+}
+
+/* ==========================================================================
+   MEDIA QUERY — TABLET (max-width: 900px)
+   ========================================================================== */
+@media (max-width: 900px) {
+    body {
+        padding-top: 86px;
+    }
+
+    /* El hero se apila en columna */
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 35px;
+    }
+
+    .hero-badge {
+        margin: 0 auto 15px auto;
+    }
+
+    .hero-text, .hero-image {
+        width: 100%;
+    }
+
+    .hero-image {
+        max-width: 520px;
+        margin: 0 auto;
+    }
+
+    .hero-info {
+        text-align: left;
+    }
+
+    .main-nav ul {
+        gap: 4px;
+    }
+
+    .main-nav a {
+        font-size: 0.88rem;
+        padding: 6px 10px;
+    }
+
+    /* Las tarjetas de beneficios pasan a 1 columna */
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   MEDIA QUERY — MÓVIL (max-width: 700px)
+   Menú hamburguesa y ajustes de celular
+   ========================================================================== */
+@media (max-width: 700px) {
+    body {
+        padding-top: 74px;
+    }
+
+    .site-header {
+        padding: 12px 0;
+    }
+
+    .header-content {
+        position: relative;
+    }
+
+    /* Muestra el botón hamburguesa en móvil */
+    .menu-button {
+        display: flex;
+    }
+
+    /* Menú oculto por defecto en móvil */
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 48px;
+        left: 0;
+        width: 100%;
+        background-color: var(--azul-marino);
+        border-top: 2px solid var(--tierra); /* Tierra en vez de celeste */
+        padding: 15px;
+        border-radius: 0 0 12px 12px;
+        z-index: 999;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* *** Cuando el checkbox está marcado, el menú aparece
+           El ~ selecciona el hermano siguiente del checkbox */
+    .menu-toggle:checked ~ .main-nav {
+        display: block;
+    }
+
+    /* Menú vertical en móvil */
+    .main-nav ul {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .main-nav a {
+        display: block;
+        padding: 12px;
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .hero {
+        padding: 50px 0;
+    }
+
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Tabla responsiva: se convierte en tarjetas en móvil */
+    .table-responsive {
+        overflow-x: visible;
+        box-shadow: none;
+    }
+
+    table {
+        min-width: 0;
+        border-collapse: separate;
+        border-spacing: 0 15px;
+        background-color: transparent;
+    }
+
+    thead {
+        display: none; /* Esconde los encabezados de columna */
+    }
+
+    tbody, tr, td {
+        display: block;
+        width: 100%;
+    }
+
+    tr {
+        background-color: var(--blanco);
+        border: 1px solid #D4E3EF;
+        border-radius: 14px;
+        padding: 16px;
+        box-shadow: 0 4px 12px rgba(27, 58, 92, 0.06);
+        margin-bottom: 15px;
+    }
+
+    td {
+        border-bottom: 1px solid #EEF5FA;
+        padding: 10px 0;
+    }
+
+    td:last-child {
+        border-bottom: none;
+    }
+
+    /* Inserta el título de columna usando el atributo data-label del HTML */
+    td::before {
+        content: attr(data-label);
+        display: block;
+        font-weight: 700;
+        color: var(--azul-marino);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+    }
+
+    /* Resalta la celda del puesto en móvil */
+    td[data-label="Puesto"],
+    td[data-label="Empresa"] {
+        background-color: #DDEEF8;
+        color: var(--azul-medio);
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 1.05rem;
+        margin-bottom: 10px;
+    }
+
+    td[data-label="Puesto"]::before,
+    td[data-label="Empresa"]::before {
+        color: var(--azul-medio);
+    }
+
+    /* Footer en columna */
+    .footer-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    footer ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* ==========================================================================
+   MEDIA QUERY — MÓVIL PEQUEÑO (max-width: 420px)
+   ========================================================================== */
+@media (max-width: 420px) {
+    .logo {
+        font-size: 1.25rem;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    button[type="submit"] {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+
+.hero-center {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3rem;
+}
+
+.hero-center h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    color: var(--blanco);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-center p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.hero-center .hero-actions {
+    justify-content: center;
+}
+
+/* Imagen ocupa todo el ancho debajo del texto */
+.hero .hero-image {
+    max-width: 780px;
+    margin: 0 auto 2rem;
+    background-color: rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 10px;
+    border: 2px solid rgba(255,255,255,0.15);
+    flex: none;
+    width: 100%;
+}
+
+.hero .hero-image img {
+    width: 100%;
+    border-radius: 12px;
+    max-height: 380px;
+    object-fit: cover;
+}
+
+/* La caja de aviso va centrada abajo de la imagen */
+.hero .hero-info {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   SECCIÓN DE ESTADÍSTICAS
+  lo quité
+   ========================================================================== */
+
+.stats-section {
+    background-color: var(--azul-marino);
+    padding: 3rem 0;
+}
+
+/* Grid de 4 columnas para los números */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    text-align: center;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1rem;
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.stat-item:last-child {
+    border-right: none;
+}
+
+.stat-num {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--celeste);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+}
+
+/* ==========================================================================
+   ÍCONO EN LAS TARJETAS DE BENEFICIOS
+   ========================================================================== */
+
+.card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+/* ==========================================================================
+   ASIDE CON BOTÓN 
+   ========================================================================== */
+
+.aside-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Botón dentro del aside */
+.btn-aside {
+    display: inline-block;
+    background-color: var(--blanco);
+    color: var(--tierra);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radio);
+    font-weight: 700;
+    white-space: nowrap;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-aside:hover {
+    background-color: var(--arena);
+    color: var(--tierra);
+}
+
+/* ==========================================================================
+   RESPONSIVE — estadísticas en móvil
+   ========================================================================== */
+
+@media (max-width: 700px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .aside-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+}
