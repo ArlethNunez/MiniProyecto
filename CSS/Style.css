@@ -314,39 +314,68 @@ hr {
 /* Caja de aviso dentro del hero
    Usa position: relative para anclar el .info-label absoluto */
 .hero-info {
-    margin-top: 30px;
-    padding: 25px 20px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-left: 5px solid var(--celeste); /* Borde celeste, diferente al de la profe */
-    border-radius: 8px;
-    position: relative;                    /* ← Ancla al hijo absoluto */
+    margin-top: 35px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-left: 6px solid var(--celeste);
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);         
 }
 
 /* Etiqueta que "flota" encima del borde superior de la caja
    position: absolute la saca del flujo normal */
 .info-label {
     position: absolute;
-    top: -12px;
-    left: 20px;                    /* La profe la pone a la derecha, nosotros a la izquierda */
-    background-color: var(--tierra);
-    color: var(--blanco);
-    padding: 4px 12px;
-    border-radius: 20px;
+    top: -14px;
+    left: 25px;
+    background: linear-gradient(
+        135deg,
+        var(--tierra),
+        #c78a50
+    );
+    color: white;
+    padding: 6px 16px;
+    border-radius: 999px;
     font-size: 0.75rem;
-    font-weight: bold;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 
-/* mark resalta texto en celeste */
-mark {
-    background-color: var(--celeste);
+.hero-info p {
+    color: var(--blanco);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.hero-info mark {
+    background: rgba(91, 192, 235, 0.25);
+    color: #9be7ff;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.hero-info .btn-secondary {
+    background: transparent;
+    color: var(--celeste);
+    border: 2px solid var(--celeste);
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.hero-info .btn-secondary:hover {
+    background: var(--celeste);
     color: var(--azul-marino);
-    padding: 0 4px;
-    border-radius: 3px;
+    transform: translateY(-2px);
 }
 
-/* Fila de botones del hero */
 .hero-actions {
     display: flex;
     gap: 1rem;
