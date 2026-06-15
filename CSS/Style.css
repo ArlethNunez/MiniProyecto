@@ -244,32 +244,6 @@ hr {
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-/* *** Flexbox: dos columnas (texto + imagen) */
-.hero-content {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-}
-
-/* Columna de texto */
-.hero-text {
-    flex: 1.2;
-}
-
-/* Título principal */
-.hero-text h1 {
-    font-size: clamp(2rem, 5vw, 2.8rem); 
-    color: var(--blanco);
-    margin-bottom: 20px;
-    line-height: 1.25;
-}
-
-/* Párrafo del hero */
-.hero-text p {
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 25px;
-}
 
 /* Badge encima del título */
 .hero-badge {
@@ -460,7 +434,7 @@ button[type="submit"]:hover {
     margin-bottom: 1.5rem;
 }
 
-/* *** CSS Grid: tarjetas en 3 columnas
+/* *** CSS Grid: tarjetas en 3 columnas 
 
 /* Tarjetas de beneficios */
 .benefits-grid{
@@ -961,13 +935,6 @@ footer a:hover {
         padding-top: 86px;
     }
 
-    /* El hero se apila en columna */
-    .hero-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 35px;
-    }
-
     .hero-badge {
         margin: 0 auto 15px auto;
     }
@@ -1248,15 +1215,6 @@ footer a:hover {
 .stat-label {
     font-size: 0.85rem;
     color: rgba(255,255,255,0.7);
-}
-
-/* ==========================================================================
-   ÍCONO EN LAS TARJETAS DE BENEFICIOS
-   ========================================================================== */
-
-.card-icon {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
 }
 
 /* ==========================================================================
