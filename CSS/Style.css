@@ -1265,3 +1265,58 @@ footer a:hover {
         text-align: center;
     }
 }
+.main-nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-actions{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-box{
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+}
+
+.search-btn{
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5aa9e6;
+    color: white;
+    cursor: pointer;
+}
+
+.search-btn:hover{
+    background-color: #4793cf;
+}
+
+.login-btn{
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.login-btn:hover{
+    background-color: white;
+    color: #1f4368;
+}
+
+.register-btn{
+    text-decoration: none;
+    background-color: #5aa9e6;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.register-btn:hover{
+    background-color: #4793cf;
+}
