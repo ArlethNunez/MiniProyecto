@@ -1320,3 +1320,47 @@ footer a:hover {
 .register-btn:hover{
     background-color: #4793cf;
 }
+/* ==========================================================================
+   PÁGINA DE AUTENTICACIÓN (login / registro)
+   ========================================================================== */
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-medio) 100%);
+    padding: 2rem;
+}
+
+.auth-container {
+    background-color: var(--blanco);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: var(--sombra);
+    width: 100%;
+    max-width: 420px;
+}
+
+.auth-container h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--azul-marino);
+    text-align: center;
+}
+
+.auth-container p {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.auth-container a {
+    color: var(--azul-medio);
+    font-weight: 600;
+}
+
+.auth-container a:hover {
+    color: var(--celeste);
+    text-decoration: underline;
+}
