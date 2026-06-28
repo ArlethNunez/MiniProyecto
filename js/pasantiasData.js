@@ -1,6 +1,6 @@
 let pasantias = []
 
-// Carga el JSON de pasantías desde la carpeta data/
+
 async function cargarPasantias() {
     try {
         const respuesta = await fetch("data/pasantias.json")
