@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Explorá el catálogo completo de pasantías disponibles en Costa Rica para estudiantes y egresados universitarios.">
+    <meta name="keywords"
+        content="pasantías, Costa Rica, estudiantes, egresados, experiencia laboral, prácticas profesionales, empleo junior">
+    <meta name="author" content="InternCR">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>InternCR | Pasantías disponibles</title>
+</head>
+
+<body>
+
+    <!-- ENCABEZADO FIJO -->
+    <header class="site-header">
+        <div class="container header-content">
+            <p class="logo"><strong>Intern<span class="logo-accent">CR</span></strong></p>
+
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-button" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a class="active-link" href="pasantias.html">Pasantías</a></li>
+                    <li><a href="index.html#sobre-plataforma">Sobre nosotros</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                    <li><a href="https://www.mtss.go.cr/" target="_blank">MTSS</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <input type="search" id="buscar" placeholder="Buscar..." class="search-box">
+                    <button class="search-btn" onclick="buscarPasantia()">Buscar</button>
+                    <a href="login.html" class="login-btn">Iniciar sesión</a>
+                    <a href="registro.html" class="register-btn">Registrarse</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <nav class="breadcrumb" aria-label="Ubicación actual">
+        <div class="container">
+            <a href="index.html">Inicio</a>
+            <span>Pasantías</span>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- ==========================================
+             HERO — introducción a la página
+             ========================================== -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-center">
+                    <span class="hero-badge">Catálogo actualizado · Junio 2026</span>
+                    <h1>Encontrá tu pasantía ideal</h1>
+                    <p>
+                        Revisá las oportunidades disponibles, filtrá por área o modalidad
+                        y postulate directamente desde la plataforma.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="btn-primary" href="#catalogo-pasantias">Ver catálogo</a>
+                        <a class="btn-link" href="#tabla-pasantias">Ver tabla comparativa</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             CATÁLOGO — TARJETAS DE PASANTÍAS
+             ========================================== -->
+        <section id="catalogo-pasantias" class="events-section">
+            <div class="container">
+                <h2>Pasantías disponibles</h2>
+
+                <!-- Leyenda de estados -->
+                <div class="ui-states-demo">
+                    <div class="state-box state-success">Disponible</div>
+                    <div class="state-box state-warning">Pocos cupos</div>
+                    <div class="state-box state-danger">Sin cupos</div>
+                </div>
+
+                <div class="events-grid">
+
+                    <!-- TARJETA 1 — Disponible -->
+                    <article class="event-card">
+                        <span class="card-label">Cupos abiertos</span>
+                        <figure>
+                            
+                                
+                            
+                            <img src="C:\Users\Usuario\OneDrive\Escritorio\MiniProyecto\assets\desarrollador-fe.webp"
+                                alt="Estudiante trabajando en desarrollo de software en oficina costarricense">
+                            <figcaption>Desarrollo de software — San José, Costa Rica.</figcaption>
+                        </figure>
+                        <div class="event-card-content">
+                            <span class="event-category">Tecnología</span>
+                            <h3>Desarrollador Frontend Jr.</h3>
+                            <p><b>Empresa:</b> Grupo Tecnológico San José</p>
+                            <p>
+                                <b>Inicio:</b>
+                                <time datetime="2026-07-14">28 de julio de 2026</time>
+                            </p>
+                            <p><b>Modalidad:</b> Presencial · San José</p>
+                            <p class="state-box state-success">5 cupos disponibles</p>
+                            <a class="btn-card" href="#tabla-pasantias">Ver detalles</a>
+                        </div>
+                    </article>
+
+                    <!-- TARJETA 2 — Pocos cupos -->
+                    <article class="event-card">
+                        <span class="card-label">Pocos cupos</span>
+                        <figure>
+                            <!--
+                                
+                            -->
+                            <img src="C:\Users\Usuario\OneDrive\Escritorio\MiniProyecto\assets\marketing.webp"
+                                alt="Equipo de marketing digital trabajando en estrategia de redes sociales">
+                            <figcaption>Marketing digital — Alajuela, Costa Rica.</figcaption>
+                        </figure>
+                        <div class="event-card-content">
+                            <span class="event-category">Marketing</span>
+                            <h3>Asistente de Marketing Digital</h3>
+                            <p><b>Empresa:</b> Agencia Creativa Pacífico</p>
+                            <p>
+                                <b>Inicio:</b>
+                                <time datetime="2026-07-21">21 de julio de 2026</time>
+                            </p>
+                            <p><b>Modalidad:</b> Híbrida · Alajuela</p>
+                            <p class="state-box state-warning">2 cupos disponibles</p>
+                            <a class="btn-card" href="#tabla-pasantias">Ver detalles</a>
+                        </div>
+                    </article>
+
+                    <!-- TARJETA 3 — Sin cupos -->
+                    <article class="event-card">
+                        <span class="card-label">Sin cupos</span>
+                        <figure>
+                            <!--
+                                
+                            -->
+                            <img src="C:\Users\Usuario\OneDrive\Escritorio\MiniProyecto\assets\images\contable.jpg"
+                                alt="Pasante revisando reportes financieros en oficina">
+                            <figcaption>Administración y finanzas — Heredia, Costa Rica.</figcaption>
+                        </figure>
+                        <div class="event-card-content">
+                            <span class="event-category">Finanzas</span>
+                            <h3>Auxiliar Contable</h3>
+                            <p><b>Empresa:</b> Consultora Financiera del Norte</p>
+                            <p>
+                                <b>Inicio:</b>
+                                <time datetime="2026-07-07">7 de julio de 2026</time>
+                            </p>
+                            <p><b>Modalidad:</b> Presencial · Heredia</p>
+                            <p class="state-box state-danger">Sin cupos disponibles</p>
+                            <a class="btn-card btn-card-disabled" href="#tabla-pasantias">Ver detalles</a>
+                        </div>
+                    </article>
+
+                </div><!-- /events-grid -->
+
+                <!-- Estado vacío: se muestra si no hay resultados de búsqueda/filtro -->
+                <div class="empty-state" id="sinResultados" style="display: none;">
+                    <h3>No encontramos pasantías con ese filtro</h3>
+                    <p>
+                        Intentá con otra área, modalidad o provincia. Las publicaciones se actualizan cada semana.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             TABLA SEMÁNTICA COMPARATIVA
+             ========================================== -->
+        <section id="tabla-pasantias" class="table-section">
+            <div class="container">
+                <h2>Resumen de pasantías activas</h2>
+                <p>Comparativo rápido de todas las oportunidades publicadas este mes.</p>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Puesto</th>
+                                <th>Empresa</th>
+                                <th>Área</th>
+                                <th>Modalidad</th>
+                                <th>Provincia</th>
+                                <th>Cupos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Puesto">Desarrollador Frontend Jr.</td>
+                                <td data-label="Empresa">Grupo Tecnológico Alajuela</td>
+                                <td data-label="Área">Tecnología</td>
+                                <td data-label="Modalidad">Presencial</td>
+                                <td data-label="Provincia">Alajuela</td>
+                                <td data-label="Cupos">5</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Puesto">Asistente de Marketing Digital</td>
+                                <td data-label="Empresa">Agencia Creativa Pacífico</td>
+                                <td data-label="Área">Marketing</td>
+                                <td data-label="Modalidad">Híbrida</td>
+                                <td data-label="Provincia">San José</td>
+                                <td data-label="Cupos">2</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Puesto">Auxiliar Contable</td>
+                                <td data-label="Empresa">Consultora Financiera del Norte</td>
+                                <td data-label="Área">Finanzas</td>
+                                <td data-label="Modalidad">Presencial</td>
+                                <td data-label="Provincia">Heredia</td>
+                                <td data-label="Cupos">0</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Puesto">Analista de Datos Jr.</td>
+                                <td data-label="Empresa">DataCR Solutions</td>
+                                <td data-label="Área">Tecnología</td>
+                                <td data-label="Modalidad">Remota</td>
+                                <td data-label="Provincia">Nacional</td>
+                                <td data-label="Cupos">8</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Puesto">Asistente de Recursos Humanos</td>
+                                <td data-label="Empresa">Grupo Empresarial Cartago</td>
+                                <td data-label="Área">RR. HH.</td>
+                                <td data-label="Modalidad">Presencial</td>
+                                <td data-label="Provincia">Cartago</td>
+                                <td data-label="Cupos">3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN DINÁMICA — SEMANA 5 (DOM + JS)
+             Los filtros y tarjetas se generan desde script.js
+             ========================================== -->
+        <section class="events-section" id="explorar-pasantias">
+            <div class="container">
+
+                <div class="section-heading" style="margin-bottom: 30px;">
+                    <span class="hero-badge">Semana 5 · DOM</span>
+                    <h2 style="margin-top: 12px;">Explorá por área o modalidad</h2>
+                    <p>Las pasantías de abajo se generan dinámicamente desde JavaScript.</p>
+                </div>
+
+                <!-- Filtros -->
+                <div class="filters-panel" style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; align-items: flex-end;">
+
+                    <div class="filter-group">
+                        <label for="filtroArea"><b>Área</b></label>
+                        <select id="filtroArea">
+                            <option value="">Todas las áreas</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="filtroModalidad"><b>Modalidad</b></label>
+                        <select id="filtroModalidad">
+                            <option value="">Todas las modalidades</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="filtroProvincia"><b>Provincia</b></label>
+                        <select id="filtroProvincia">
+                            <option value="">Todas las provincias</option>
+                        </select>
+                    </div>
+
+                    <button id="btnLimpiarFiltros" class="btn-secondary">
+                        Limpiar filtros
+                    </button>
+
+                </div>
+
+                <p id="mensajePasantias" style="color: var(--texto-suave); margin-bottom: 20px;">
+                    Cargando pasantías disponibles...
+                </p>
+
+                <!-- Contenedor donde JS inyectará las tarjetas dinámicas -->
+                <div id="contenedorPasantias" class="events-grid"></div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             ASIDE — PASANTÍA DESTACADA
+             ========================================== -->
+        <aside class="destacado-aside">
+            <div class="aside-inner">
+                <div>
+                    <h4>Mayor disponibilidad esta semana</h4>
+                    <p>
+                        <strong>Analista de Datos Jr. — DataCR Solutions</strong><br>
+                        Modalidad: <em>Remota · Nacional</em><br>
+                        Cupos disponibles: <span>8</span>
+                    </p>
+                    <small>
+                        La información de cupos se actualiza cada lunes. Datos ilustrativos para este proyecto académico.
+                    </small>
+                </div>
+                <a class="btn-aside" href="#tabla-pasantias">Ver tabla completa</a>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer id="contacto">
+        <div class="footer-content container">
+
+            <div class="footer-col">
+                <p class="footer-logo"><strong>Intern<span class="logo-accent">CR</span></strong></p>
+                <address>
+                    InternCR — Plataforma de Pasantías<br>
+                    Correo: info@interncr.cr<br>
+                    Alajuela, Costa Rica
+                </address>
+            </div>
+
+            <div class="footer-col">
+                <h5>Navegación</h5>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="pasantias.html">Pasantías</a></li>
+                    <li><a href="index.html#sobre-plataforma">Sobre nosotros</a></li>
+                    <li><a href="https://www.mtss.go.cr/" target="_blank">MTSS Costa Rica</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h5>Para empresas</h5>
+                <p>¿Querés publicar una pasantía?<br>Escribinos y te explicamos cómo.</p>
+            </div>
+
+        </div>
+
+        <p class="footer-copy">
+            <small>&copy; 2026 InternCR. Todos los derechos reservados y un abracito.</small>
+        </p>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
