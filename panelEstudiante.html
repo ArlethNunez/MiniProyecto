@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel del Estudiante</title>
+    <link rel="stylesheet" href="CSS/stylePanel.css">
+</head>
+<body>
+    <main class="dashboard">
+        <section class="perfil">
+            <div class="perfil-info">
+                <img src="assets/images/perfil.png" alt="Foto de perfil" class="foto-perfil">
+
+                <div>
+                    <h2 id="nombrePerfil">Mateo González</h2>
+                    <p id="carreraPerfil">Ingeniería en Sistemas</p>
+
+                    <p>
+                        Estado: 
+                        <span id="estadoDisponibilidad">
+                            Disponible para pasantías
+                        </span>
+                    </p>
+                    <button onclick="cambiarDisponibilidad()">
+                        Cambiar Disponibilidad
+                    </button>
+                </div>
+            </div>
+
+            <div class="acciones">
+                <button onclick="subirCV()">Subir CV</button>
+                <button onclick="mostrarEditarPerfil()">Editar Perfil</button>
+                <button onclick="abrirChat()">Abrir Chat</button>
+            </div>
+            <input 
+                type="file"
+                id="cvInput"
+                accept=".pdf"
+                style="display:none">
+        </section>
+        <div id="editarPerfilPanel" class="panel-oculto">
+
+    <h2>Editar Perfil</h2>
+
+    <label>Nombre:</label>
+    <input type="text" id="nombre" value="Mateo González">
+
+    <label>Carrera:</label>
+    <input type="text" id="carrera" value="Ingeniería en Sistemas">
+
+    <label>Descripción:</label>
+    <textarea id="descripcion">
+Estudiante interesado en desarrollo web.
+    </textarea>
+
+    <button onclick="guardarPerfil()">
+        Guardar Cambios
+    </button>
+
+</div>
+
+        <section class="habilidades">
+            <h2>Portafolio de habilidades</h2>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>SQL server</li>
+                <li>C#</li>
+                <li>Trabajo en equipo</li>
+                <li>Comunicación efectiva</li>
+            </ul>
+        </section>
+
+        <section class="estadisticas">
+            <h2>Estadísticas</h2>
+            <div class="stats">
+                <div>
+                    <h3 id="vistas">145</h3>
+                    <p>Visualizaciones</p>
+                </div>
+
+                <div>
+                    <h3>8</h3>
+                    <p>Postulaciones</p>
+                </div>
+                
+                <div>
+                    <h3>4</h3>
+                    <p>Mensajes nuevos</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="postulaciones">
+            <h2>Pstulaciones actuales</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Empresa</th>
+                        <th>Puesto</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DataCR Solutions</td>
+                        <td>Analista de Datos Jr.</td>
+                        <td>En revisión</td>
+                    </tr>
+
+                    <tr>
+                        <td>Estudio Visual Guanacaste</td>
+                        <td>Practicante de Diseño Gráfico</td>
+                        <td>Aceptado</td>
+                    </tr>
+
+                    <tr>
+                        <td>Agencia Creativa Pacífico</td>
+                        <td>Asistente de Marketing Digital</td>
+                        <td>Finalizado</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="recomendaciones">
+            <h2>Recomedaciones para vos</h2>
+            <div id="listaRecomendaciones">
+                <p>Auxiliar de Soporte TI</p>
+                <p>Desarrollador Frontend Jr.</p>
+                <p>Desarrollador Backend Jr.</p>
+            </div>
+        </section>
+
+        <section class="buzon">
+            <h2>Buzón de Entrada</h2>
+            <div class="mensaje">
+                <strong>DataCR Solutions: </strong>
+                Nos interesa tu perfil
+            </div>
+            <div class="mensaje">
+                <strong>Estudio Visual Guanacaste: </strong>
+                Tu entrevista ha sido programada
+            </div>
+            <div class="mensaje">
+                <strong>Agencia Creativa Pacífico: </strong>
+                Gracias por participar
+            </div>
+        </section>
+        <div id="chatPanel" class="panel-oculto">
+
+    <h2>Chat</h2>
+
+    <div id="mensajesChat">
+
+        <div class="mensaje">
+            <strong>DataCR Solutions:</strong>
+            Hola Mateo, queremos conocerte mejor.
+        </div>
+
+    </div>
+
+    <input
+        type="text"
+        id="mensajeInput"
+        placeholder="Escribe un mensaje">
+
+    <button onclick="enviarMensaje()">
+        Enviar
+    </button>
+
+</div>
+
+    </main>
+    <script src="js/panel.js"></script>
+</body>
+</html>
