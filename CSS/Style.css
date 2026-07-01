@@ -1499,3 +1499,15 @@ footer a:hover {
     color: var(--blanco);
 }
 
+/* ==========================================
+   FIX: alineación del panel de filtros
+   ========================================== */
+.filters-panel .filter-group select {
+    margin: 10px 0 0 0; /* quitamos el margen inferior que descuadraba todo */
+}
+
+.filters-panel #btnLimpiarFiltros {
+    height: 46px;           /* misma altura visual que los select */
+    box-sizing: border-box;
+    margin: 0;
+}
