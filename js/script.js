@@ -168,14 +168,15 @@ function limpiarFiltros() {
 
 // ─── Listeners de filtros ──────────────────────────────────────────────────────
 
-filtroArea.addEventListener("change", filtrarPasantias)
-filtroModalidad.addEventListener("change", filtrarPasantias)
-filtroProvincia.addEventListener("change", filtrarPasantias)
-btnLimpiarFiltros.addEventListener("click", limpiarFiltros)
+filtroArea?.addEventListener("change", filtrarPasantias)
+filtroModalidad?.addEventListener("change", filtrarPasantias)
+filtroProvincia?.addEventListener("change", filtrarPasantias)
+btnLimpiarFiltros?.addEventListener("click", limpiarFiltros)
 
-// ─── Búsqueda con modal (barra de búsqueda del header) ────────────────────────
-// Usa la variable global "pasantias" que ya se cargó una sola vez en el init,
-// en vez de volver a hacer fetch cada vez que se busca.
+// ─── Búsqueda (barra de búsqueda del header, solo en pasantias.html) ──────────
+// Filtra las tarjetas del contenedor dinámico (#contenedorPasantias) y hace
+// scroll automático hasta la sección donde quedan renderizados los resultados,
+// en vez de mostrarlos en un modal aparte.
 
 function buscarPasantia() {
     const inputBuscar = document.getElementById("buscar")
@@ -198,51 +199,46 @@ function buscarPasantia() {
         )
     })
 
-    mostrarResultados(resultados)
-}
+    // Reseteamos los selects para que no compitan con el resultado de la búsqueda
+    if (filtroArea)      filtroArea.value = ""
+    if (filtroModalidad) filtroModalidad.value = ""
+    if (filtroProvincia) filtroProvincia.value = ""
 
-function mostrarResultados(resultados) {
-    const contenedor = document.getElementById("resultadosModal")
-    const modal      = document.getElementById("modalBusqueda")
-
-    if (!contenedor || !modal) {
-        console.warn("Faltan los elementos #resultadosModal / #modalBusqueda en el HTML.")
-        return
-    }
-
-    contenedor.innerHTML = ""
+    renderizarPasantias(resultados)
 
     if (resultados.length === 0) {
-        contenedor.innerHTML = "<p>No se encontraron pasantías que coincidan con la búsqueda.</p>"
-        modal.style.display = "flex"
-        return
+        mensajePasantias.textContent = `No se encontraron pasantías para "${inputBuscar.value}".`
+    } else {
+        mensajePasantias.textContent = `Se encontraron ${resultados.length} pasantía(s) para "${inputBuscar.value}".`
     }
 
-    resultados.forEach(function (p) {
-        contenedor.innerHTML += `
-            <div class="resultado-card">
-                <img src="${p.imagen}" alt="${p.puesto}">
-                <h3>${p.puesto}</h3>
-                <p><strong>Empresa:</strong> ${p.empresa}</p>
-                <p><strong>Área:</strong> ${p.area}</p>
-                <p><strong>Provincia:</strong> ${p.provincia}</p>
-                <p><strong>Modalidad:</strong> ${p.modalidad}</p>
-                <p><strong>Habilidades:</strong> ${p.habilidades.join(", ")}</p>
-            </div>
-        `
-    })
-
-    modal.style.display = "flex"
+    // Llevamos al usuario directo a donde quedaron las tarjetas filtradas
+    const seccionExplorar = document.getElementById("explorar-pasantias")
+    if (seccionExplorar) {
+        seccionExplorar.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
 }
 
-function cerrarModal() {
-    const modal = document.getElementById("modalBusqueda")
-    if (modal) modal.style.display = "none"
+// ─── Sesión ────────────────────────────────────────────────────────────────
+
+function cerrarSesion() {
+    localStorage.removeItem('sesionActiva')
+    window.location.href = 'index.html'
+}
+
+function actualizarAccionesSesion() {
+    const contenedor = document.getElementById("accionesSesion")
+    if (!contenedor) return
+
+    if (localStorage.getItem('sesionActiva') === 'true') {
+        contenedor.innerHTML = `<button class="btn-secondary" onclick="cerrarSesion()">Cerrar sesión</button>`
+    }
 }
 
 // ─── Init ──────────────────────────────────────────────────────────────────────
 
 document.addEventListener("DOMContentLoaded", async function () {
+    actualizarAccionesSesion()
     if (!document.getElementById("contenedorPasantias")) return
     await cargarPasantias()
     cargarFiltros()

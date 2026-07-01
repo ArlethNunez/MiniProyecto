@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="CSS/Style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>InternCR | Pasantías disponibles</title>
+    <script>
+        if (localStorage.getItem('sesionActiva') !== 'true') {
+            window.location.href = 'registro.html';
+        }
+    </script>
 </head>
 
 <body>
@@ -96,9 +101,9 @@
                     <article class="event-card">
                         <span class="card-label">Cupos abiertos</span>
                         <figure>
-                            
-                                
-                            
+
+
+
                             <img src="assets/images/desarrollador.jpg"
                                 alt="Estudiante trabajando en desarrollo de software en oficina costarricense">
                             <figcaption>Desarrollo de software — San José, Costa Rica.</figcaption>
@@ -168,7 +173,7 @@
                     </article>
 
 
-<!-- TARJETA 4 — Pocos cupos -->
+                    <!-- TARJETA 4 — Pocos cupos -->
                     <article class="event-card">
                         <span class="card-label">Pocos cupos</span>
                         <figure>
@@ -194,7 +199,7 @@
                     </article>
 
 
-<!-- TARJETA 5 — 1 cupo -->
+                    <!-- TARJETA 5 — 1 cupo -->
                     <article class="event-card">
                         <span class="card-label">1 cupo</span>
                         <figure>
@@ -203,7 +208,7 @@
                             -->
                             <img src="assets/images/abogado.jpg"
                                 alt="ManpowerGroup en búsqueda de pasantes para apoyo de procesos">
-                            <figcaption>Asistente  — Heredia, Costa Rica.</figcaption>
+                            <figcaption>Asistente — Heredia, Costa Rica.</figcaption>
                         </figure>
                         <div class="event-card-content">
                             <span class="event-category">LEGAL</span>
@@ -220,7 +225,7 @@
                     </article>
 
 
-<!-- TARJETA 6 — 7 cupos -->
+                    <!-- TARJETA 6 — 7 cupos -->
                     <article class="event-card">
                         <span class="card-label">7 cupos</span>
                         <figure>
@@ -229,7 +234,7 @@
                             -->
                             <img src="assets/images/customerServices.jpg"
                                 alt="Stryker en búsqueda de pasantes para CALL US">
-                            <figcaption>Customer Service CALL US  — San Jose, Costa Rica.</figcaption>
+                            <figcaption>Customer Service CALL US — San Jose, Costa Rica.</figcaption>
                         </figure>
                         <div class="event-card-content">
                             <span class="event-category">CUSTOMER SERVICE</span>
@@ -289,7 +294,7 @@
                                 <td data-label="Provincia">Alajuela</td>
                                 <td data-label="Cupos">5</td>
                             </tr>
-                           
+
                             <tr>
                                 <td data-label="Puesto">Pasante Contable</td>
                                 <td data-label="Empresa">Consultora Financiera del Norte</td>
@@ -372,7 +377,8 @@
                             </tr>
                             <tr>
                                 <td data-label="Puesto">Pasante de TI y Redes</td>
-                                <td data-label="Empresa">Cooperativa de Electrificación Rural de San Carlos (Coopelesca)</td>
+                                <td data-label="Empresa">Cooperativa de Electrificación Rural de San Carlos (Coopelesca)
+                                </td>
                                 <td data-label="Área">Tecnología</td>
                                 <td data-label="Modalidad">Presencial</td>
                                 <td data-label="Provincia">Alajuela</td>
@@ -402,7 +408,7 @@
                                 <td data-label="Provincia">Alajuela</td>
                                 <td data-label="Cupos">2</td>
                             </tr>
-                          
+
                             <tr>
                                 <td data-label="Puesto">Pasante de Recursos Humanos</td>
                                 <td data-label="Empresa">FIFCO (Florida Ice and Farm Company)</td>
@@ -411,7 +417,7 @@
                                 <td data-label="Provincia">Heredia</td>
                                 <td data-label="Cupos">2</td>
                             </tr>
-                           
+
                             <tr>
                                 <td data-label="Puesto">Pasante de Contabilidad y Finanzas</td>
                                 <td data-label="Empresa">Deloitte Costa Rica</td>
@@ -420,7 +426,7 @@
                                 <td data-label="Provincia">San José</td>
                                 <td data-label="Cupos">4</td>
                             </tr>
-                          
+
                             <tr>
                                 <td data-label="Puesto">Pasante de Logística y Cadena de Suministro</td>
                                 <td data-label="Empresa">DHL Aviation</td>
@@ -429,7 +435,7 @@
                                 <td data-label="Provincia">Alajuela</td>
                                 <td data-label="Cupos">3</td>
                             </tr>
-                            
+
                             <tr>
                                 <td data-label="Puesto">Pasante de Mercadeo Digital</td>
                                 <td data-label="Empresa">Spoon</td>
@@ -438,7 +444,7 @@
                                 <td data-label="Provincia">San José</td>
                                 <td data-label="Cupos">1</td>
                             </tr>
-                
+
                             <tr>
                                 <td data-label="Puesto">Intern de Calidad y Procesos Químicos</td>
                                 <td data-label="Empresa">Bayer Medical</td>
@@ -495,11 +501,12 @@
                 <div class="section-heading" style="margin-bottom: 30px;">
                     <span class="hero-badge">Elegí la más adecuada según tu necesidad</span>
                     <h2 style="margin-top: 12px;">Explorá por área o modalidad</h2>
-                    
+
                 </div>
 
                 <!-- Filtros -->
-                <div class="filters-panel" style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; align-items: flex-end;">
+                <div class="filters-panel"
+                    style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; align-items: flex-end;">
 
                     <div class="filter-group">
                         <label for="filtroArea"><b>Área</b></label>
@@ -553,7 +560,8 @@
                         Cupos disponibles: <span>8</span>
                     </p>
                     <small>
-                        La información de cupos se actualiza cada lunes. Datos ilustrativos para este proyecto académico.
+                        La información de cupos se actualiza cada lunes. Datos ilustrativos para este proyecto
+                        académico.
                     </small>
                 </div>
                 <a class="btn-aside" href="#tabla-pasantias">Ver tabla completa</a>
@@ -602,5 +610,3 @@
 </body>
 
 </html>
-
-
