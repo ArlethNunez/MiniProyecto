@@ -102,9 +102,6 @@ function postularse(id) {
 }
 
 
-
-
-
 // ─── Helpers de cálculo ──────────────────────────────────────────────────────
 
 function calcularDisponibles(pasantia) {
@@ -112,9 +109,6 @@ function calcularDisponibles(pasantia) {
     const inscritosExtra = extra[pasantia.id] || 0
     return pasantia.cuposTotales - pasantia.inscritos - inscritosExtra
 }
-
-
-
 
 
 function obtenerEstadoPasantia(pasantia) {
@@ -271,9 +265,7 @@ filtroProvincia?.addEventListener("change", filtrarPasantias)
 btnLimpiarFiltros?.addEventListener("click", limpiarFiltros)
 
 // ─── Búsqueda (barra de búsqueda del header, solo en pasantias.html) ──────────
-// Filtra las tarjetas del contenedor dinámico (#contenedorPasantias) y hace
-// scroll automático hasta la sección donde quedan renderizados los resultados,
-// en vez de mostrarlos en un modal aparte.
+
 
 function buscarPasantia() {
     const inputBuscar = document.getElementById("buscar")
