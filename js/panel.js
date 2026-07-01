@@ -115,9 +115,6 @@ function cancelarPostulacion(id) {
 }
 
 
-
-
-
 function cambiarDisponibilidad() {
 
     const estado = document.getElementById("estadoDisponibilidad");
@@ -164,8 +161,6 @@ function mostrarEditarPerfil() {
     }
 
 }
-
-
 
 // Guardar cambios del perfil
 function guardarPerfil() {
