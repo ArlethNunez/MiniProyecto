@@ -10,7 +10,7 @@
         "cuposTotales": 5,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-frontend.jpg"
+        "imagen": "assets/images/desarrollador.jpg"
     },
     {
         "id": 2,
@@ -23,7 +23,7 @@
         "cuposTotales": 2,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-marketing.jpg"
+        "imagen": "assets/images/marketing.jpg"
     },
     {
         "id": 3,
@@ -36,7 +36,7 @@
         "cuposTotales": 4,
         "inscritos": 4,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-finanzas.jpg"
+        "imagen": "assets/images/contable.jpg"
     },
     {
         "id": 4,
@@ -49,7 +49,7 @@
         "cuposTotales": 4,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-rrhh.jpg"
+        "imagen": "assets/images/recursosInHumanos.jpg"
     },
     {
         "id": 5,
@@ -62,7 +62,7 @@
         "cuposTotales": 1,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-legal.jpg"
+        "imagen": "assets/images/abogado.jpg"
     },
     {
         "id": 6,
@@ -75,7 +75,7 @@
         "cuposTotales": 7,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-customer-service.jpg"
+        "imagen": "assets/images/customerServices.jpg"
     },
     {
         "id": 7,
@@ -88,7 +88,7 @@
         "cuposTotales": 3,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-desarrollo-web.jpg"
+        "imagen": "assets/images/desarrolladoWEB.jpg"
     },
     {
         "id": 8,
@@ -101,7 +101,7 @@
         "cuposTotales": 4,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-ingenieria-software.jpg"
+        "imagen": "assets/images/pasanteDesarrollo.jpg"
     },
     {
         "id": 9,
@@ -114,7 +114,7 @@
         "cuposTotales": 2,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-frontend-react.jpg"
+        "imagen": "assets/images/front.jpg"
     },
     {
         "id": 10,
@@ -127,7 +127,7 @@
         "cuposTotales": 6,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-soporte.jpg"
+        "imagen": "assets/images/soporte.jpg"
     },
     {
         "id": 11,
@@ -140,7 +140,7 @@
         "cuposTotales": 2,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-qa.jpg"
+        "imagen": "assets/images/calidad.jpg"
     },
     {
         "id": 12,
@@ -153,7 +153,7 @@
         "cuposTotales": 2,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-ciberseguridad.jpg"
+        "imagen": "assets/images/ciber.jpg"
     },
     {
         "id": 13,
@@ -166,7 +166,7 @@
         "cuposTotales": 3,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-ti-redes.jpg"
+        "imagen": "assets/images/redes.jpg"
     },
     {
         "id": 14,
@@ -179,7 +179,7 @@
         "cuposTotales": 4,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-backend.jpg"
+        "imagen": "assets/images/back.jpg"
     },
     {
         "id": 15,
@@ -192,7 +192,7 @@
         "cuposTotales": 2,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-datos.jpg"
+        "imagen": "assets/images/analista.jpg"
     },
     {
         "id": 16,
@@ -205,7 +205,7 @@
         "cuposTotales": 2,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-desarrollo-movil.jpg"
+        "imagen": "assets/images/movil.jpg"
     },
     {
         "id": 17,
@@ -218,7 +218,7 @@
         "cuposTotales": 2,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-rrhh.jpg"
+        "imagen": "assets/images/rrhh.jpg"
     },
     {
         "id": 18,
@@ -231,7 +231,7 @@
         "cuposTotales": 4,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-finanzas.jpg"
+        "imagen": "assets/images/conta.jpg"
     },
     {
         "id": 19,
@@ -244,7 +244,7 @@
         "cuposTotales": 3,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-logistica.jpg"
+        "imagen": "assets/images/logistica.jpg"
     },
     {
         "id": 20,
@@ -257,7 +257,7 @@
         "cuposTotales": 1,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-marketing.jpg"
+        "imagen": "assets/images/mercadeo.jpg"
     },
     {
         "id": 21,
@@ -270,20 +270,7 @@
         "cuposTotales": 2,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-calidad.jpg"
-    },
-    {
-        "id": 22,
-        "puesto": "Asistente de Marketing Digital",
-        "empresa": "Agencia Creativa Pacífico",
-        "area": "Marketing",
-        "habilidades": ["Redes Sociales", "Diseño", "Contenido"],
-        "modalidad": "Híbrida",
-        "provincia": "San José",
-        "cuposTotales": 2,
-        "inscritos": 0,
-        "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-marketing.jpg"
+        "imagen": "assets/images/salud.jpg"
     },
     {
         "id": 23,
@@ -296,7 +283,7 @@
         "cuposTotales": 4,
         "inscritos": 4,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-finanzas.jpg"
+        "imagen": "assets/images/cont.jpg"
     },
     {
         "id": 24,
@@ -309,7 +296,7 @@
         "cuposTotales": 8,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-datos.jpg"
+        "imagen": "assets/images/analistaDatos.jpg"
     },
     {
         "id": 25,
@@ -322,6 +309,6 @@
         "cuposTotales": 3,
         "inscritos": 0,
         "activo": true,
-        "imagen": "assets/images/pasantias/pasantia-rrhh.jpg"
+        "imagen": "assets/images/recursos.jpg"
     }
 ]
