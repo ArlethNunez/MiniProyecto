@@ -1,5 +1,122 @@
+
+    // ─── Perfil del usuario (localStorage) ──────────────────────────────────────
+
+    function obtenerPerfil() {
+        return JSON.parse(localStorage.getItem('perfil')) || {
+            nombre: "Estudiante",
+            carrera: "Sin especificar",
+            descripcion: "Todavía no completaste tu descripción.",
+            imagen: "assets/images/perfil.png"
+        }
+    }
+
+    function guardarPerfilEnStorage(perfil) {
+        localStorage.setItem('perfil', JSON.stringify(perfil))
+    }
+
+    function cargarPerfilEnPantalla() {
+        const perfil = obtenerPerfil()
+
+        document.getElementById("nombrePerfil").textContent = perfil.nombre
+        document.getElementById("carreraPerfil").textContent = perfil.carrera
+        document.getElementById("fotoPerfil").src = perfil.imagen
+
+        // Precarga los inputs del panel de edición también
+        document.getElementById("nombre").value = perfil.nombre
+        document.getElementById("carrera").value = perfil.carrera
+        document.getElementById("descripcion").value = perfil.descripcion
+    }
+
+    function cambiarFoto() {
+        document.getElementById("fotoInput").click()
+    }
+
+    document.getElementById("fotoInput").addEventListener("change", function () {
+        if (this.files.length === 0) return
+
+        const archivo = this.files[0]
+        const lector = new FileReader()
+
+        lector.onload = function (e) {
+            const perfil = obtenerPerfil()
+            perfil.imagen = e.target.result // base64 de la imagen
+            guardarPerfilEnStorage(perfil)
+
+            document.getElementById("fotoPerfil").src = perfil.imagen
+        }
+
+        lector.readAsDataURL(archivo)
+    })
+
+
 // Disponibilidad
 let disponible = true;
+
+// ─── Postulaciones (localStorage) ───────────────────────────────────────────
+
+function obtenerPostulaciones() {
+    return JSON.parse(localStorage.getItem('postulaciones')) || []
+}
+
+function guardarPostulaciones(lista) {
+    localStorage.setItem('postulaciones', JSON.stringify(lista))
+}
+
+function obtenerInscritosExtra() {
+    return JSON.parse(localStorage.getItem('inscritosExtra')) || {}
+}
+
+function guardarInscritosExtra(obj) {
+    localStorage.setItem('inscritosExtra', JSON.stringify(obj))
+}
+
+function renderizarPostulaciones() {
+    const postulaciones = obtenerPostulaciones()
+    const tbody = document.getElementById('postulacionesBody')
+    const numPostulaciones = document.getElementById('numPostulaciones')
+    if (!tbody) return
+
+    tbody.innerHTML = ""
+
+    if (numPostulaciones) {
+        numPostulaciones.textContent = postulaciones.length
+    }
+
+    if (postulaciones.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4">Todavía no te postulaste a ninguna pasantía.</td></tr>`
+        return
+    }
+
+    for (const p of postulaciones) {
+        const fila = document.createElement('tr')
+        fila.innerHTML = `
+            <td>${p.empresa}</td>
+            <td>${p.puesto}</td>
+            <td>${p.estado}</td>
+            <td><button onclick="cancelarPostulacion(${p.id})" class="btn-secondary">Cancelar</button></td>
+        `
+        tbody.appendChild(fila)
+    }
+}
+
+function cancelarPostulacion(id) {
+    if (!confirm('¿Seguro que querés cancelar esta postulación?')) return
+
+    const postulaciones = obtenerPostulaciones().filter(function (p) { return p.id !== id })
+    guardarPostulaciones(postulaciones)
+
+    const extra = obtenerInscritosExtra()
+    if (extra[id]) {
+        extra[id] = Math.max(0, extra[id] - 1)
+        guardarInscritosExtra(extra)
+    }
+
+    renderizarPostulaciones()
+}
+
+
+
+
 
 function cambiarDisponibilidad() {
 
@@ -45,19 +162,27 @@ function mostrarEditarPerfil() {
 
 }
 
+
+
 // Guardar cambios del perfil
 function guardarPerfil() {
 
-    const nombre = document.getElementById("nombre").value;
-    const carrera = document.getElementById("carrera").value;
+    const perfil = obtenerPerfil()
+    perfil.nombre = document.getElementById("nombre").value.trim()
+    perfil.carrera = document.getElementById("carrera").value.trim()
+    perfil.descripcion = document.getElementById("descripcion").value.trim()
 
-    document.getElementById("nombrePerfil").textContent = nombre;
-    document.getElementById("carreraPerfil").textContent = carrera;
+    guardarPerfilEnStorage(perfil)
 
-    alert("Perfil actualizado correctamente");
+    document.getElementById("nombrePerfil").textContent = perfil.nombre
+    document.getElementById("carreraPerfil").textContent = perfil.carrera
 
-    document.getElementById("editarPerfilPanel").style.display = "none";
+    alert("Perfil actualizado correctamente")
+
+    document.getElementById("editarPerfilPanel").style.display = "none"
 }
+
+
 
 // Mostrar/Ocultar chat
 function abrirChat() {
@@ -114,3 +239,6 @@ setInterval(() => {
     vistas.textContent = cantidad + 1;
 
 }, 15000);
+
+cargarPerfilEnPantalla()
+renderizarPostulaciones()

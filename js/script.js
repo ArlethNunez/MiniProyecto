@@ -20,11 +20,102 @@ const filtroModalidad   = document.getElementById("filtroModalidad")
 const filtroProvincia   = document.getElementById("filtroProvincia")
 const btnLimpiarFiltros = document.getElementById("btnLimpiarFiltros")
 
+
+// ─── Postulaciones (localStorage) ───────────────────────────────────────────
+
+function obtenerPostulaciones() {
+    return JSON.parse(localStorage.getItem('postulaciones')) || []
+}
+
+function guardarPostulaciones(lista) {
+    localStorage.setItem('postulaciones', JSON.stringify(lista))
+}
+
+function obtenerInscritosExtra() {
+    return JSON.parse(localStorage.getItem('inscritosExtra')) || {}
+}
+
+function guardarInscritosExtra(obj) {
+    localStorage.setItem('inscritosExtra', JSON.stringify(obj))
+}
+
+function yaPostulado(id) {
+    return obtenerPostulaciones().some(function (p) { return p.id === id })
+}
+
+function crearBotonPostulacion(pasantia, disponibles) {
+    const sesionActiva = localStorage.getItem('sesionActiva') === 'true'
+
+    if (!sesionActiva) {
+        return `<a class="btn-card" href="login.html">Iniciá sesión para postularte</a>`
+    }
+    if (disponibles === 0) {
+        return `<button class="btn-card btn-card-disabled" disabled>Sin cupos</button>`
+    }
+    if (yaPostulado(pasantia.id)) {
+        return `<button class="btn-card btn-card-disabled" disabled>Ya postulado ✓</button>`
+    }
+    return `<button class="btn-card" onclick="postularse(${pasantia.id})">Postularme</button>`
+}
+
+function postularse(id) {
+    const sesionActiva = localStorage.getItem('sesionActiva') === 'true'
+    if (!sesionActiva) {
+        window.location.href = 'login.html'
+        return
+    }
+
+    const pasantia = pasantias.find(function (p) { return p.id === id })
+    if (!pasantia) return
+
+    const disponibles = calcularDisponibles(pasantia)
+    if (disponibles <= 0) {
+        alert('Ya no hay cupos disponibles para esta pasantía.')
+        return
+    }
+
+    if (yaPostulado(id)) {
+        alert('Ya te postulaste a esta pasantía.')
+        return
+    }
+
+    const postulaciones = obtenerPostulaciones()
+    postulaciones.push({
+        id: pasantia.id,
+        puesto: pasantia.puesto,
+        empresa: pasantia.empresa,
+        area: pasantia.area,
+        modalidad: pasantia.modalidad,
+        provincia: pasantia.provincia,
+        estado: "En revisión",
+        fecha: new Date().toISOString()
+    })
+    guardarPostulaciones(postulaciones)
+
+    const extra = obtenerInscritosExtra()
+    extra[id] = (extra[id] || 0) + 1
+    guardarInscritosExtra(extra)
+
+    alert(`¡Te postulaste a "${pasantia.puesto}"! Podés ver el estado en tu perfil.`)
+
+    filtrarPasantias()
+}
+
+
+
+
+
 // ─── Helpers de cálculo ──────────────────────────────────────────────────────
 
 function calcularDisponibles(pasantia) {
-    return pasantia.cuposTotales - pasantia.inscritos
+    const extra = obtenerInscritosExtra()
+    const inscritosExtra = extra[pasantia.id] || 0
+    return pasantia.cuposTotales - pasantia.inscritos - inscritosExtra
 }
+
+
+
+
 
 function obtenerEstadoPasantia(pasantia) {
     const disponibles = calcularDisponibles(pasantia)
@@ -108,11 +199,17 @@ function crearTarjetaPasantia(pasantia) {
                     return `<span style="background:#DDEEF8; color:var(--azul-medio); padding:3px 10px; border-radius:20px; font-size:0.78rem; font-weight:600;">${h}</span>`
                 }).join("")}
             </div>
+
+
             <a class="btn-card ${disponibles === 0 ? "btn-card-disabled" : ""}" href="#tabla-pasantias">
                 Ver detalles
             </a>
+            ${crearBotonPostulacion(pasantia, disponibles)}
         </div>
     `
+
+
+
     return tarjeta
 }
 

@@ -5,19 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel del Estudiante</title>
     <link rel="stylesheet" href="CSS/stylePanel.css">
-    <script>
-    if (localStorage.getItem('sesionActiva') !== 'true') {
-        window.location.href = 'registro.html';
-    }
-</script>
 </head>
 <body>
     <main class="dashboard">
         <section class="perfil">
-            <div class="perfil-info">
-                <img src="assets/images/perfil.png" alt="Foto de perfil" class="foto-perfil">
 
-                <div>
+        <div class="perfil-info">
+    <img src="assets/images/perfil.png" alt="Foto de perfil" class="foto-perfil" id="fotoPerfil">
+    <input type="file" id="fotoInput" accept="image/*" style="display:none">
+
+    <div>
+
                     <h2 id="nombrePerfil">Mateo González</h2>
                     <p id="carreraPerfil">Ingeniería en Sistemas</p>
 
@@ -33,11 +31,15 @@
                 </div>
             </div>
 
+
             <div class="acciones">
-                <button onclick="subirCV()">Subir CV</button>
-                <button onclick="mostrarEditarPerfil()">Editar Perfil</button>
-                <button onclick="abrirChat()">Abrir Chat</button>
+            <button onclick="cambiarFoto()">Cambiar Foto</button>
+            <button onclick="subirCV()">Subir CV</button>
+            <button onclick="mostrarEditarPerfil()">Editar Perfil</button>
+            <button onclick="abrirChat()">Abrir Chat</button>
             </div>
+
+
             <input 
                 type="file"
                 id="cvInput"
@@ -54,10 +56,11 @@
     <label>Carrera:</label>
     <input type="text" id="carrera" value="Ingeniería en Sistemas">
 
+
     <label>Descripción:</label>
     <textarea id="descripcion">
-Estudiante interesado en desarrollo web.
     </textarea>
+
 
     <button onclick="guardarPerfil()">
         Guardar Cambios
@@ -87,10 +90,10 @@ Estudiante interesado en desarrollo web.
                 </div>
 
                 <div>
-                    <h3>8</h3>
-                    <p>Postulaciones</p>
+                <h3 id="numPostulaciones">0</h3>
+                <p>Postulaciones</p>
                 </div>
-                
+
                 <div>
                     <h3>4</h3>
                     <p>Mensajes nuevos</p>
@@ -99,35 +102,26 @@ Estudiante interesado en desarrollo web.
         </section>
 
         <section class="postulaciones">
-            <h2>Pstulaciones actuales</h2>
+            <h2>Postulaciones actuales</h2>
+            
+            
+            
             <table border="1">
-                <thead>
-                    <tr>
-                        <th>Empresa</th>
-                        <th>Puesto</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>DataCR Solutions</td>
-                        <td>Analista de Datos Jr.</td>
-                        <td>En revisión</td>
-                    </tr>
+            <thead>
+             <tr>
+            <th>Empresa</th>
+            <th>Puesto</th>
+            <th>Estado</th>
+            <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="postulacionesBody">
+            </tbody>
+        </table>
 
-                    <tr>
-                        <td>Estudio Visual Guanacaste</td>
-                        <td>Practicante de Diseño Gráfico</td>
-                        <td>Aceptado</td>
-                    </tr>
 
-                    <tr>
-                        <td>Agencia Creativa Pacífico</td>
-                        <td>Asistente de Marketing Digital</td>
-                        <td>Finalizado</td>
-                    </tr>
-                </tbody>
-            </table>
+
+
         </section>
 
         <section class="recomendaciones">
