@@ -1,52 +1,52 @@
 
-    // ─── Perfil del usuario (localStorage) ──────────────────────────────────────
+// ─── Perfil del usuario (localStorage) ──────────────────────────────────────
 
-    function obtenerPerfil() {
-        return JSON.parse(localStorage.getItem('perfil')) || {
-            nombre: "Estudiante",
-            carrera: "Sin especificar",
-            descripcion: "Todavía no completaste tu descripción.",
-            imagen: "assets/images/perfil.png"
-        }
+function obtenerPerfil() {
+    return JSON.parse(localStorage.getItem('perfil')) || {
+        nombre: "Estudiante",
+        carrera: "Sin especificar",
+        descripcion: "Todavía no completaste tu descripción.",
+        imagen: "assets/images/perfil.png"
     }
+}
 
-    function guardarPerfilEnStorage(perfil) {
-        localStorage.setItem('perfil', JSON.stringify(perfil))
-    }
+function guardarPerfilEnStorage(perfil) {
+    localStorage.setItem('perfil', JSON.stringify(perfil))
+}
 
-    function cargarPerfilEnPantalla() {
+function cargarPerfilEnPantalla() {
+    const perfil = obtenerPerfil()
+
+    document.getElementById("nombrePerfil").textContent = perfil.nombre
+    document.getElementById("carreraPerfil").textContent = perfil.carrera
+    document.getElementById("fotoPerfil").src = perfil.imagen
+
+    // Precarga los inputs del panel de edición también
+    document.getElementById("nombre").value = perfil.nombre
+    document.getElementById("carrera").value = perfil.carrera
+    document.getElementById("descripcion").value = perfil.descripcion
+}
+
+function cambiarFoto() {
+    document.getElementById("fotoInput").click()
+}
+
+document.getElementById("fotoInput").addEventListener("change", function () {
+    if (this.files.length === 0) return
+
+    const archivo = this.files[0]
+    const lector = new FileReader()
+
+    lector.onload = function (e) {
         const perfil = obtenerPerfil()
+        perfil.imagen = e.target.result // base64 de la imagen
+        guardarPerfilEnStorage(perfil)
 
-        document.getElementById("nombrePerfil").textContent = perfil.nombre
-        document.getElementById("carreraPerfil").textContent = perfil.carrera
         document.getElementById("fotoPerfil").src = perfil.imagen
-
-        // Precarga los inputs del panel de edición también
-        document.getElementById("nombre").value = perfil.nombre
-        document.getElementById("carrera").value = perfil.carrera
-        document.getElementById("descripcion").value = perfil.descripcion
     }
 
-    function cambiarFoto() {
-        document.getElementById("fotoInput").click()
-    }
-
-    document.getElementById("fotoInput").addEventListener("change", function () {
-        if (this.files.length === 0) return
-
-        const archivo = this.files[0]
-        const lector = new FileReader()
-
-        lector.onload = function (e) {
-            const perfil = obtenerPerfil()
-            perfil.imagen = e.target.result // base64 de la imagen
-            guardarPerfilEnStorage(perfil)
-
-            document.getElementById("fotoPerfil").src = perfil.imagen
-        }
-
-        lector.readAsDataURL(archivo)
-    })
+    lector.readAsDataURL(archivo)
+})
 
 
 // Disponibilidad
@@ -142,9 +142,12 @@ document.getElementById("cvInput").addEventListener("change", function () {
 
         const archivo = this.files[0];
 
-        alert("CV cargado correctamente: " + archivo.name);
+        document.getElementById("cvSubido").textContent =
+            "CV cargado: " + archivo.name;
 
         localStorage.setItem("cvNombre", archivo.name);
+
+        alert("CV cargado correctamente");
     }
 
 });
@@ -180,6 +183,24 @@ function guardarPerfil() {
     alert("Perfil actualizado correctamente")
 
     document.getElementById("editarPerfilPanel").style.display = "none"
+    const habilidadesTexto =
+        document.getElementById("habilidadesInput").value;
+
+    const habilidades =
+        habilidadesTexto.split(",");
+
+    const lista =
+        document.getElementById("listaHabilidades");
+
+    lista.innerHTML = "";
+
+    habilidades.forEach(h => {
+
+        lista.innerHTML += `
+        <li>${h.trim()}</li>
+    `;
+
+    });
 }
 
 
@@ -242,3 +263,10 @@ setInterval(() => {
 
 cargarPerfilEnPantalla()
 renderizarPostulaciones()
+
+const cvGuardado = localStorage.getItem("cvNombre");
+
+if (cvGuardado) {
+    document.getElementById("cvSubido").textContent =
+        "CV cargado: " + cvGuardado;
+}

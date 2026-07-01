@@ -196,3 +196,33 @@ document.addEventListener("DOMContentLoaded", async function () {
     cargarFiltros()
     renderizarPasantias(obtenerPasantiasActivas())
 })
+function actualizarAccionesSesion() {
+
+    const contenedor = document.getElementById("accionesSesion");
+
+    if (!contenedor) return;
+
+    if (localStorage.getItem('sesionActiva') === 'true') {
+
+        contenedor.innerHTML = `
+            <input type="search" id="buscar"
+                   placeholder="Buscar..."
+                   class="search-box">
+
+            <button class="search-btn"
+                    onclick="buscarPasantia()">
+                Buscar
+            </button>
+
+            <button class="btn-secondary"
+                    onclick="cerrarSesion()">
+                Cerrar sesión
+            </button>
+        `;
+    }
+}
+document.addEventListener("DOMContentLoaded", function () {
+
+    actualizarAccionesSesion();
+
+});

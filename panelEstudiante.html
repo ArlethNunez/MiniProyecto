@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel del Estudiante</title>
     <link rel="stylesheet" href="CSS/stylePanel.css">
 </head>
+
 <body>
     <main class="dashboard">
         <section class="perfil">
 
-        <div class="perfil-info">
-    <img src="assets/images/perfil.png" alt="Foto de perfil" class="foto-perfil" id="fotoPerfil">
-    <input type="file" id="fotoInput" accept="image/*" style="display:none">
+            <div class="perfil-info">
+                <img src="assets/images/perfil.png" alt="Foto de perfil" class="foto-perfil" id="fotoPerfil">
+                <input type="file" id="fotoInput" accept="image/*" style="display:none">
 
-    <div>
+                <div>
 
                     <h2 id="nombrePerfil">Mateo González</h2>
                     <p id="carreraPerfil">Ingeniería en Sistemas</p>
 
                     <p>
-                        Estado: 
+                        Estado:
                         <span id="estadoDisponibilidad">
                             Disponible para pasantías
                         </span>
@@ -33,44 +35,49 @@
 
 
             <div class="acciones">
-            <button onclick="cambiarFoto()">Cambiar Foto</button>
-            <button onclick="subirCV()">Subir CV</button>
-            <button onclick="mostrarEditarPerfil()">Editar Perfil</button>
-            <button onclick="abrirChat()">Abrir Chat</button>
+                <button onclick="cambiarFoto()">Cambiar Foto</button>
+                <button onclick="subirCV()">Subir CV</button>
+                <button onclick="mostrarEditarPerfil()">Editar Perfil</button>
+                <button onclick="abrirChat()">Abrir Chat</button>
+                <p id="cvSubido">
+                    No hay CV cargado.
+                </p>
+                <input type="file" id="cvInput" accept=".pdf" style="display:none">
             </div>
 
 
-            <input 
-                type="file"
-                id="cvInput"
-                accept=".pdf"
-                style="display:none">
+            <input type="file" id="cvInput" accept=".pdf" style="display:none">
         </section>
         <div id="editarPerfilPanel" class="panel-oculto">
 
-    <h2>Editar Perfil</h2>
+            <h2>Editar Perfil</h2>
 
-    <label>Nombre:</label>
-    <input type="text" id="nombre" value="Mateo González">
+            <label>Nombre:</label>
+            <input type="text" id="nombre" value="Mateo González">
 
-    <label>Carrera:</label>
-    <input type="text" id="carrera" value="Ingeniería en Sistemas">
+            <label>Carrera:</label>
+            <input type="text" id="carrera" value="Ingeniería en Sistemas">
 
 
-    <label>Descripción:</label>
-    <textarea id="descripcion">
+            <label>Descripción:</label>
+            <textarea id="descripcion">
     </textarea>
+            <label>Habilidades (separadas por coma):</label>
+
+            <textarea id="habilidadesInput">
+               HTML, CSS, JavaScript, SQL Server, C#
+            </textarea>
 
 
-    <button onclick="guardarPerfil()">
-        Guardar Cambios
-    </button>
+            <button onclick="guardarPerfil()">
+                Guardar Cambios
+            </button>
 
-</div>
+        </div>
 
         <section class="habilidades">
             <h2>Portafolio de habilidades</h2>
-            <ul>
+            <ul id="listaHabilidades">
                 <li>HTML</li>
                 <li>CSS</li>
                 <li>JavaScript</li>
@@ -90,8 +97,8 @@
                 </div>
 
                 <div>
-                <h3 id="numPostulaciones">0</h3>
-                <p>Postulaciones</p>
+                    <h3 id="numPostulaciones">0</h3>
+                    <p>Postulaciones</p>
                 </div>
 
                 <div>
@@ -103,21 +110,21 @@
 
         <section class="postulaciones">
             <h2>Postulaciones actuales</h2>
-            
-            
-            
+
+
+
             <table border="1">
-            <thead>
-             <tr>
-            <th>Empresa</th>
-            <th>Puesto</th>
-            <th>Estado</th>
-            <th>Acción</th>
-                </tr>
-            </thead>
-            <tbody id="postulacionesBody">
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th>Empresa</th>
+                        <th>Puesto</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="postulacionesBody">
+                </tbody>
+            </table>
 
 
 
@@ -150,29 +157,27 @@
         </section>
         <div id="chatPanel" class="panel-oculto">
 
-    <h2>Chat</h2>
+            <h2>Chat</h2>
 
-    <div id="mensajesChat">
+            <div id="mensajesChat">
 
-        <div class="mensaje">
-            <strong>DataCR Solutions:</strong>
-            Hola Mateo, queremos conocerte mejor.
+                <div class="mensaje">
+                    <strong>DataCR Solutions:</strong>
+                    Hola Mateo, queremos conocerte mejor.
+                </div>
+
+            </div>
+
+            <input type="text" id="mensajeInput" placeholder="Escribe un mensaje">
+
+            <button onclick="enviarMensaje()">
+                Enviar
+            </button>
+
         </div>
-
-    </div>
-
-    <input
-        type="text"
-        id="mensajeInput"
-        placeholder="Escribe un mensaje">
-
-    <button onclick="enviarMensaje()">
-        Enviar
-    </button>
-
-</div>
 
     </main>
     <script src="js/panel.js"></script>
 </body>
+
 </html>
